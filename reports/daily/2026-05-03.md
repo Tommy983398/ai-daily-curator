@@ -1,98 +1,133 @@
 # AI 日报 - 2026-05-03
 
-> 自动生成于 2026-05-03 09:34 UTC
+> 自动生成于 2026-05-03 10:02 UTC |  Powered by GitHub Actions + GitHub Models
 
 ---
 
-## Hacker News AI 热帖
+## 🔥 Hacker News AI 热帖精选
 
 ### VS Code inserting 'Co-Authored-by Copilot' into commits regardless of usage
-- **得分**: 1164 | [原文链接](https://github.com/microsoft/vscode/pull/310226)
+
+- 🔗 [查看原文](https://github.com/microsoft/vscode/pull/310226) | 👍 得分: 1178
 
 ### AI Self-preferencing in Algorithmic Hiring: Empirical Evidence and Insights
-- **得分**: 324 | [原文链接](https://arxiv.org/abs/2509.00462)
+
+- 🔗 [查看原文](https://arxiv.org/abs/2509.00462) | 👍 得分: 324
 
 ### Kimi K2.6 just beat Claude, GPT-5.5, and Gemini in a coding challenge
-- **得分**: 272 | [原文链接](https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/)
+
+- 🔗 [查看原文](https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/) | 👍 得分: 279
 
 ### Open Design: Use Your Coding Agent as a Design Engine
-- **得分**: 200 | [原文链接](https://github.com/nexu-io/open-design)
 
-### Refusal in Language Models Is Mediated by a Single Direction
-- **得分**: 107 | [原文链接](https://arxiv.org/abs/2406.11717)
+- 🔗 [查看原文](https://github.com/nexu-io/open-design) | 👍 得分: 200
 
 ### Specsmaxxing – On overcoming AI psychosis, and why I write specs in YAML
-- **得分**: 104 | [原文链接](https://acai.sh/blog/specsmaxxing)
+
+- 🔗 [查看原文](https://acai.sh/blog/specsmaxxing) | 👍 得分: 109
+
+### Refusal in Language Models Is Mediated by a Single Direction
+
+- 🔗 [查看原文](https://arxiv.org/abs/2406.11717) | 👍 得分: 107
 
 ### The agent harness belongs outside the sandbox
-- **得分**: 102 | [原文链接](https://www.mendral.com/blog/agent-harness-belongs-outside-sandbox)
+
+- 🔗 [查看原文](https://www.mendral.com/blog/agent-harness-belongs-outside-sandbox) | 👍 得分: 102
 
 ### Show HN: Agent-desktop – Native desktop automation CLI for AI agents
-- **得分**: 93 | [原文链接](https://github.com/lahfir/agent-desktop)
 
-### Flue is a TypeScript framework for building the next generation of agents
-- **得分**: 89 | [原文链接](https://flueframework.com/)
-
-### Spirit Airlines canceled all flights and is going out of business
-- **得分**: 75 | [原文链接](https://www.cnn.com/2026/05/02/business/spirit-to-halt-all-flights)
-
-### Voice-AI-for-Beginners – A curated learning path for developers
-- **得分**: 70 | [原文链接](https://github.com/mahimairaja/voiceai)
-
-### The Claude Delusion: Richard Dawkins believes his AI chatbot is conscious
-- **得分**: 68 | [原文链接](https://www.dailygrail.com/2026/05/the-claude-delusion-richard-dawkins-believes-his-female-ai-chatbot-is-conscious/)
-
-### Show HN: Mljar Studio – local AI data analyst that saves analysis as notebooks
-- **得分**: 65 | [原文链接](https://mljar.com/)
-
-### Show HN: Filling PDF forms with AI using client-side tool calling
-- **得分**: 51 | [原文链接](https://copilot.simplepdf.com/?share=a7d00ad073c75a75d493228e6ff7b11eb3f2d945b6175913e87898ec96ca8076&form=w9&lang=en)
+- 🔗 [查看原文](https://github.com/lahfir/agent-desktop) | 👍 得分: 93
 
 ---
 
-## arXiv AI 论文精选
+## 📄 arXiv AI 论文精选
 
-_今日暂无新论文_
+### PRISM: Pre-alignment via Black-box On-policy Distillation for Multimodal Reinforcement Learning
+**作者：** Sudong Wang, Weiquan Huang, Xiaomin Yu, Zuhao Yang
+**发布日期：** 2026-04-30
+
+- 📄 [论文链接](https://arxiv.org/abs/2604.28123v1) | 📥 [PDF](https://arxiv.org/pdf/2604.28123v1)
+
+### LaST-R1: Reinforcing Action via Adaptive Physical Latent Reasoning for VLA Models
+**作者：** Hao Chen, Jiaming Liu, Zhonghao Yan, Nuowei Han
+**发布日期：** 2026-04-30
+
+- 📄 [论文链接](https://arxiv.org/abs/2604.28192v1) | 📥 [PDF](https://arxiv.org/pdf/2604.28192v1)
+
+### FineState-Bench: Benchmarking State-Conditioned Grounding for Fine-grained GUI State Setting
+**作者：** Fengxian Ji, Jingpu Yang, Zirui Song, Yuanxi Wang
+**发布日期：** 2026-04-30
+
+- 📄 [论文链接](https://arxiv.org/abs/2604.27974v1) | 📥 [PDF](https://arxiv.org/pdf/2604.27974v1)
+
+### PhyCo: Learning Controllable Physical Priors for Generative Motion
+**作者：** Sriram Narayanan, Ziyu Jiang, Srinivasa Narasimhan, Manmohan Chandraker
+**发布日期：** 2026-04-30
+
+- 📄 [论文链接](https://arxiv.org/abs/2604.28169v1) | 📥 [PDF](https://arxiv.org/pdf/2604.28169v1)
+
+### Echo-α: Large Agentic Multimodal Reasoning Model for Ultrasound Interpretation
+**作者：** Jing Zhang, Wentao Jiang, Tao Huang, Zhiwei Wang
+**发布日期：** 2026-04-30
+
+- 📄 [论文链接](https://arxiv.org/abs/2604.28011v1) | 📥 [PDF](https://arxiv.org/pdf/2604.28011v1)
+
+### Visual Generation in the New Era: An Evolution from Atomic Mapping to Agentic World Modeling
+**作者：** Keming Wu, Zuhao Yang, Kaichen Zhang, Shizun Wang
+**发布日期：** 2026-04-30
+
+- 📄 [论文链接](https://arxiv.org/abs/2604.28185v1) | 📥 [PDF](https://arxiv.org/pdf/2604.28185v1)
+
+### AEGIS: A Holistic Benchmark for Evaluating Forensic Analysis of AI-Generated Academic Images
+**作者：** Bo Zhang, Tzu-Yen Ma, Zichen Tang, Junpeng Ding
+**发布日期：** 2026-04-30
+
+- 📄 [论文链接](https://arxiv.org/abs/2604.28177v1) | 📥 [PDF](https://arxiv.org/pdf/2604.28177v1)
+
+### Exploration Hacking: Can LLMs Learn to Resist RL Training?
+**作者：** Eyon Jang, Damon Falck, Joschka Braun, Nathalie Kirch
+**发布日期：** 2026-04-30
+
+- 📄 [论文链接](https://arxiv.org/abs/2604.28182v1) | 📥 [PDF](https://arxiv.org/pdf/2604.28182v1)
 
 ---
 
-## GitHub 项目 Release 动态
+## 🚀 GitHub 项目 Release 动态
 
 ### vllm-project/vllm - v0.20.1
-**Release 名称**: v0.20.1
-> # vLLM v0.20.1
-
-This is a patch release on top of `v0.20.0` primarily focused on **DeepSeek V4 stabilization and performance improvements**, along with several important bug fixes.
-
-### DeepSeek V
-- [查看详情](https://github.com/vllm-project/vllm/releases/tag/v0.20.1)
+- 🔗 [查看 Release](https://github.com/vllm-project/vllm/releases/tag/v0.20.1)
 
 ### ollama/ollama - v0.23.0
-**Release 名称**: v0.23.0
-> ## Claude Desktop with Ollama Launch
-<img width="1272" height="872" alt="ca1" src="https://github.com/user-attachments/assets/1d550e3f-0272-4429-8cb2-06d32344cb77" />
-
-Claude Desktop is now support
-- [查看详情](https://github.com/ollama/ollama/releases/tag/v0.23.0)
+- 🔗 [查看 Release](https://github.com/ollama/ollama/releases/tag/v0.23.0)
 
 ---
 
-## GitHub AI 热门仓库 TOP5
+## ⭐ GitHub AI 热门仓库 TOP5
 
-### 1. TauricResearch/TradingAgents
-- **今日新增**: ⭐ 2225 | 总计: 63808 | 语言: Python
-- **描述**: TradingAgents: Multi-Agents LLM Financial Trading Framework
-- [查看仓库](https://github.com/TauricResearch/TradingAgents)
+### 1. ruvnet/ruflo
+- **今日新增：** ⭐ 1299 | **总计：** 37338 | **语言：** TypeScript
+- **项目介绍：** 🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, distributed swarm intelligence, RAG integration, and native Claude Code / Codex Integration
+- 🔗 [查看仓库](https://github.com/ruvnet/ruflo)
 
-### 2. ruvnet/ruflo
-- **今日新增**: ⭐ 1299 | 总计: 37318 | 语言: TypeScript
-- **描述**: 🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, distributed swarm intelligence, RAG integration, and native Claude Code / Codex Integration
-- [查看仓库](https://github.com/ruvnet/ruflo)
+### 2. iOfficeAI/AionUi
+- **今日新增：** ⭐ 118 | **总计：** 23494 | **语言：** TypeScript
+- **项目介绍：** Free, local, open-source 24/7 Cowork app and OpenClaw for Gemini CLI, Claude Code, Codex, OpenCode, Qwen Code, Goose CLI, Auggie, and more | 🌟 Star if you like it!
+- 🔗 [查看仓库](https://github.com/iOfficeAI/AionUi)
 
-### 3. soxoj/maigret
-- **今日新增**: ⭐ 1064 | 总计: 23128 | 语言: Python
-- **描述**: 🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites
-- [查看仓库](https://github.com/soxoj/maigret)
+### 3. 777genius/claude_agent_teams_ui
+- **今日新增：** ⭐ 15 | **总计：** 829 | **语言：** TypeScript
+- **项目介绍：** You're the CTO, agents are your team. They handle tasks on their own, message each other, and review each other's work. You just watch the kanban board and give high-level commands. Codex/Claude/OpenCode(75+ LLM providers). Build your AI company.
+- 🔗 [查看仓库](https://github.com/777genius/claude_agent_teams_ui)
+
+### 4. TauricResearch/TradingAgents
+- **今日新增：** ⭐ 2225 | **总计：** 63860 | **语言：** Python
+- **项目介绍：** TradingAgents: Multi-Agents LLM Financial Trading Framework
+- 🔗 [查看仓库](https://github.com/TauricResearch/TradingAgents)
+
+### 5. tirth8205/code-review-graph
+- **今日新增：** ⭐ 274 | **总计：** 14951 | **语言：** Python
+- **项目介绍：** Local knowledge graph for Claude Code. Builds a persistent map of your codebase so Claude reads only what matters — 6.8× fewer tokens on reviews and up to 49× on daily coding tasks.
+- 🔗 [查看仓库](https://github.com/tirth8205/code-review-graph)
 
 ---
 
