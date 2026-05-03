@@ -24,7 +24,8 @@ from fetch_github_trending import fetch_trending
 
 # GitHub Models API
 MODELS_API = "https://models.inference.ai.azure.com/chat/completions"
-DEFAULT_MODEL = "gpt-4o-mini"
+# 使用 DeepSeek-V3-0324: 中文原生模型，free tier rate=high
+DEFAULT_MODEL = "deepseek/deepseek-v3-0324"
 
 
 def get_github_token() -> str:
@@ -37,8 +38,8 @@ def get_github_token() -> str:
     return token
 
 
-def call_github_model(prompt: str, token: str, model: str = DEFAULT_MODEL) -> str:
-    """调用 GitHub Models API"""
+def call_github_model(prompt: str, token: str, model: str = DEFAULT_MODEL, max_tokens: int = 4000) -> str:
+    """调用 GitHub Models API，带重试和详细日志"""
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
@@ -49,95 +50,119 @@ def call_github_model(prompt: str, token: str, model: str = DEFAULT_MODEL) -> st
             {
                 "role": "system",
                 "content": (
-                    "你是一个专业的 AI 领域编辑，擅长将英文科技内容翻译和整理为中文。"
-                    "你的输出必须是纯中文，格式严格按照要求。不要输出任何 markdown 代码块标记。"
+                    "你是一位资深 AI 领域中文科技编辑。你的任务是将英文科技内容翻译整理为高质量中文。"
+                    "要求：\n"
+                    "1. 全部输出必须为中文（人名、产品名、专有名词可保留英文）\n"
+                    "2. 翻译要准确、自然、流畅，符合中文阅读习惯\n"
+                    "3. 摘要要有深度，不要泛泛而谈\n"
+                    "4. 严格按要求的格式输出，不要添加多余的开头/结尾文字"
                 ),
             },
             {"role": "user", "content": prompt},
         ],
         "temperature": 0.3,
-        "max_tokens": 2000,
+        "max_tokens": max_tokens,
     }
 
     for attempt in range(3):
         try:
-            resp = requests.post(MODELS_API, headers=headers, json=data, timeout=60)
+            resp = requests.post(MODELS_API, headers=headers, json=data, timeout=120)
             if resp.status_code == 429:
-                wait = 2 ** attempt + 1
-                print(f"  [API] 速率限制，等待 {wait}s 重试...")
+                wait = 2 ** (attempt + 1) + 2
+                print(f"  [API] 速率限制，等待 {wait}s 重试 (attempt {attempt+1}/3)...")
                 time.sleep(wait)
                 continue
-            resp.raise_for_status()
-            result = resp.json()
-            return result["choices"][0]["message"]["content"].strip()
-        except requests.RequestException as e:
-            print(f"  [API] 请求失败 (尝试 {attempt + 1}/3): {e}")
-            if attempt < 2:
+            if resp.status_code != 200:
+                print(f"  [API] HTTP {resp.status_code}: {resp.text[:300]}")
                 time.sleep(3)
-            continue
+                continue
+            result = resp.json()
+            content = result["choices"][0]["message"]["content"].strip()
+            if content:
+                return content
+            print(f"  [API] 返回空内容 (attempt {attempt+1}/3)")
+            time.sleep(2)
+        except requests.RequestException as e:
+            print(f"  [API] 请求失败 (尝试 {attempt+1}/3): {e}")
+            time.sleep(3)
         except (KeyError, IndexError) as e:
             print(f"  [API] 响应解析失败: {e}")
-            continue
+            time.sleep(2)
 
-    print("  [API] 所有尝试均失败，返回原文")
+    print("  [API] 所有尝试均失败")
     return ""
 
 
 def translate_hn_items(items: list[dict], token: str) -> list[dict]:
-    """将 Hacker News 帖子翻译为中文"""
+    """将 Hacker News 帖子翻译为中文（精选 TOP 8，每条详细翻译）"""
     if not items:
         return items
 
-    print(f"[翻译] 正在处理 {len(items)} 条 Hacker News 帖子...")
+    # 精选 TOP 8（按分数排序已在抓取时完成）
+    items = items[:8]
+    print(f"[翻译] 正在处理 {len(items)} 条 Hacker News 精选帖子...")
 
-    # 批量处理（每批最多 5 条，避免 token 过长）
-    batch_size = 5
     translated = []
 
-    for i in range(0, len(items), batch_size):
-        batch = items[i:i + batch_size]
+    for item in items:
+        prompt = f"""请将以下 Hacker News AI 相关帖子翻译整理为中文。
 
-        item_list = ""
-        for j, item in enumerate(batch, 1):
-            item_list += f"{j}. 标题: {item['title']}\n   链接: {item['url']}\n   得分: {item['score']}\n\n"
+标题: {item['title']}
+链接: {item['url']}
+得分: {item['score']}
 
-        prompt = f"""请将以下 Hacker News AI 帖子列表翻译并整理为中文。
-对每条帖子输出：
-- 中文标题
-- 中文摘要（一句话概括，50字以内）
-- 重点（1条核心看点）
-
-{item_list}
-请用以下格式输出每一条（不要编号以外的多余文字）：
----
+请输出：
 中文标题：xxx
-中文摘要：xxx
-重点：xxx
----"""
+摘要：用2-3句话详细介绍这个帖子的核心内容，让读者快速了解这是一件什么事（100-200字）
+3条重点：
+- xxx
+- xxx
+- xxx
+为什么值得关注：用1-2句话说明这个帖子为什么值得 AI 从业者关注（50-100字）"""
 
         result = call_github_model(prompt, token)
+        translated_item = item.copy()
 
         if result:
-            # 解析翻译结果
-            blocks = result.split("---")
-            for j, item in enumerate(batch):
-                if j < len(blocks) - 1:
-                    block = blocks[j + 1] if j + 1 < len(blocks) else blocks[j]
-                    translated_item = item.copy()
-                    for line in block.strip().split("\n"):
-                        line = line.strip()
-                        if line.startswith("中文标题：") or line.startswith("中文标题:"):
-                            translated_item["cn_title"] = line.split("：")[-1].split(":")[-1].strip()
-                        elif line.startswith("中文摘要：") or line.startswith("中文摘要:"):
-                            translated_item["cn_summary"] = line.split("：")[-1].split(":")[-1].strip()
-                        elif line.startswith("重点：") or line.startswith("重点:"):
-                            translated_item["cn_highlight"] = line.split("：")[-1].split(":")[-1].strip()
-                    translated.append(translated_item)
-                else:
-                    translated.append(item)
-        else:
-            translated.extend(batch)
+            cn_title = item["title"]  # 默认值
+            cn_abstract = ""
+            highlights = []
+            cn_why = ""
+            current_section = None
 
+            for line in result.strip().split("\n"):
+                line = line.strip()
+                if not line:
+                    continue
+                if line.startswith("中文标题：") or line.startswith("中文标题:"):
+                    cn_title = line.split("：", 1)[-1].split(":", 1)[-1].strip()
+                elif line.startswith("摘要：") or line.startswith("摘要:"):
+                    cn_abstract = line.split("：", 1)[-1].split(":", 1)[-1].strip()
+                    current_section = "abstract"
+                elif line.startswith("3条重点") or line.startswith("重点"):
+                    current_section = "highlights"
+                elif line.startswith("为什么值得关注：") or line.startswith("为什么值得关注:"):
+                    cn_why = line.split("：", 1)[-1].split(":", 1)[-1].strip()
+                    current_section = None
+                elif line.startswith("- "):
+                    if current_section == "highlights":
+                        highlights.append(line[2:].strip())
+                    elif current_section == "abstract":
+                        cn_abstract += line[2:].strip()
+                else:
+                    if current_section == "abstract":
+                        cn_abstract += line
+
+            translated_item["cn_title"] = cn_title
+            translated_item["cn_abstract"] = cn_abstract
+            translated_item["cn_highlights"] = highlights
+            translated_item["cn_why_care"] = cn_why
+
+            print(f"  [OK] {cn_title[:40]}...")
+        else:
+            print(f"  [FAIL] {item['title'][:40]}... (使用原文)")
+
+        translated.append(translated_item)
         time.sleep(1)
 
     print(f"[翻译] 完成 {len(translated)} 条")
@@ -153,38 +178,64 @@ def translate_arxiv_papers(papers: list[dict], token: str) -> list[dict]:
 
     translated = []
     for i, paper in enumerate(papers):
-        prompt = f"""请将以下 AI 论文信息翻译为中文：
+        prompt = f"""请将以下 AI 论文信息翻译整理为中文。
+
 标题: {paper['title']}
+作者: {', '.join(paper.get('authors', [])[:5])}
 摘要: {paper['abstract']}
 
 请输出：
 中文标题：xxx
-中文摘要：xxx（100-200字）
+摘要：用3-5句话深入概括这篇论文的核心研究内容、方法和结论（150-300字）
 3条重点：
 - xxx
 - xxx
 - xxx
-为什么值得关注：xxx（50字以内）"""
+为什么值得关注：说明这项研究对 AI 领域的意义和应用前景（50-100字）"""
 
         result = call_github_model(prompt, token)
         translated_paper = paper.copy()
 
         if result:
+            cn_title = paper["title"]
+            cn_abstract = ""
+            highlights = []
+            cn_why = ""
+            current_section = None
+
             for line in result.strip().split("\n"):
                 line = line.strip()
+                if not line:
+                    continue
                 if line.startswith("中文标题：") or line.startswith("中文标题:"):
-                    translated_paper["cn_title"] = line.split("：")[-1].split(":")[-1].strip()
-                elif line.startswith("中文摘要：") or line.startswith("中文摘要:"):
-                    translated_paper["cn_abstract"] = line.split("：")[-1].split(":")[-1].strip()
+                    cn_title = line.split("：", 1)[-1].split(":", 1)[-1].strip()
+                elif line.startswith("摘要：") or line.startswith("摘要:"):
+                    cn_abstract = line.split("：", 1)[-1].split(":", 1)[-1].strip()
+                    current_section = "abstract"
+                elif line.startswith("3条重点") or line.startswith("重点"):
+                    current_section = "highlights"
                 elif line.startswith("为什么值得关注：") or line.startswith("为什么值得关注:"):
-                    translated_paper["cn_why_care"] = line.split("：")[-1].split(":")[-1].strip()
-                elif line.startswith("- ") and "cn_highlights" not in translated_paper:
-                    translated_paper["cn_highlights"] = line[2:].strip()
-                elif "cn_highlights" in translated_paper and line.startswith("- "):
-                    translated_paper["cn_highlights"] += "\n" + line[2:].strip()
+                    cn_why = line.split("：", 1)[-1].split(":", 1)[-1].strip()
+                    current_section = None
+                elif line.startswith("- "):
+                    if current_section == "highlights":
+                        highlights.append(line[2:].strip())
+                    elif current_section == "abstract":
+                        cn_abstract += " " + line[2:].strip()
+                else:
+                    if current_section == "abstract":
+                        cn_abstract += " " + line
+
+            translated_paper["cn_title"] = cn_title
+            translated_paper["cn_abstract"] = cn_abstract.strip()
+            translated_paper["cn_highlights"] = highlights
+            translated_paper["cn_why_care"] = cn_why
+
+            print(f"  [OK] {cn_title[:40]}...")
+        else:
+            print(f"  [FAIL] {paper['title'][:40]}... (使用原文)")
 
         translated.append(translated_paper)
-        print(f"  [翻译] 论文 {i + 1}/{len(papers)}: {paper['title'][:50]}...")
         time.sleep(1)
 
     print(f"[翻译] 完成 {len(translated)} 篇")
@@ -201,18 +252,48 @@ def translate_releases(releases: list[dict], token: str) -> list[dict]:
     translated = []
     for release in releases:
         translated_release = release.copy()
-        # Release 翻译只需翻译 body 摘要
-        prompt = f"""请将以下 GitHub Release 信息翻译为中文摘要（100字以内）：
+        prompt = f"""请将以下 GitHub 项目 Release 信息翻译整理为中文。
 
 项目: {release['repo']}
 版本: {release['tag_name']}
-说明: {release['body']}
+更新说明: {release['body'][:800]}
 
-只输出中文摘要，不要其他内容。"""
+请输出：
+中文标题：xxx（项目名-版本号 + 一句话概括核心更新）
+摘要：详细介绍本次更新的核心内容、新功能和改进（100-200字）
+为什么值得关注：说明这个更新对开发者的影响（50-100字）"""
 
         result = call_github_model(prompt, token)
         if result:
-            translated_release["cn_summary"] = result.strip()
+            cn_title = f"{release['repo']} - {release['tag_name']}"
+            cn_abstract = ""
+            cn_why = ""
+            current_section = None
+
+            for line in result.strip().split("\n"):
+                line = line.strip()
+                if not line:
+                    continue
+                if line.startswith("中文标题：") or line.startswith("中文标题:"):
+                    cn_title = line.split("：", 1)[-1].split(":", 1)[-1].strip()
+                elif line.startswith("摘要：") or line.startswith("摘要:"):
+                    cn_abstract = line.split("：", 1)[-1].split(":", 1)[-1].strip()
+                    current_section = "abstract"
+                elif line.startswith("为什么值得关注：") or line.startswith("为什么值得关注:"):
+                    cn_why = line.split("：", 1)[-1].split(":", 1)[-1].strip()
+                    current_section = None
+                elif not line.startswith("-") and current_section == "abstract":
+                    cn_abstract += " " + line
+                elif line.startswith("- ") and current_section == "abstract":
+                    cn_abstract += " " + line[2:]
+
+            translated_release["cn_title"] = cn_title
+            translated_release["cn_abstract"] = cn_abstract.strip()
+            translated_release["cn_why_care"] = cn_why
+            print(f"  [OK] {cn_title[:40]}...")
+        else:
+            print(f"  [FAIL] {release['repo']} - {release['tag_name']} (使用原文)")
+
         translated.append(translated_release)
         time.sleep(1)
 
@@ -230,25 +311,42 @@ def translate_trending(repos: list[dict], token: str) -> list[dict]:
     translated = []
     for repo in repos:
         translated_repo = repo.copy()
-        prompt = f"""请将以下 GitHub 仓库信息翻译为中文：
+        prompt = f"""请将以下 GitHub 热门仓库信息翻译整理为中文。
 
 仓库: {repo['repo']}
 描述: {repo['description']}
+今日新增: {repo['stars_today']} stars
+语言: {repo['language']}
 
 请输出：
-中文描述：xxx（100字以内）
-为什么值得关注：xxx（50字以内）
-
-只输出上述两行，不要其他内容。"""
+中文描述：详细介绍这个项目的功能和用途（100-200字）
+为什么值得关注：说明这个项目为什么突然火爆、解决了什么问题、适合谁使用（50-100字）"""
 
         result = call_github_model(prompt, token)
         if result:
+            cn_desc = repo["description"]
+            cn_why = ""
+            current_section = None
+
             for line in result.strip().split("\n"):
                 line = line.strip()
+                if not line:
+                    continue
                 if line.startswith("中文描述：") or line.startswith("中文描述:"):
-                    translated_repo["cn_description"] = line.split("：")[-1].split(":")[-1].strip()
+                    cn_desc = line.split("：", 1)[-1].split(":", 1)[-1].strip()
+                    current_section = "desc"
                 elif line.startswith("为什么值得关注：") or line.startswith("为什么值得关注:"):
-                    translated_repo["cn_why_care"] = line.split("：")[-1].split(":")[-1].strip()
+                    cn_why = line.split("：", 1)[-1].split(":", 1)[-1].strip()
+                    current_section = None
+                elif current_section == "desc" and not line.startswith("-"):
+                    cn_desc += " " + line
+
+            translated_repo["cn_description"] = cn_desc.strip()
+            translated_repo["cn_why_care"] = cn_why
+            print(f"  [OK] {repo['repo']}")
+        else:
+            print(f"  [FAIL] {repo['repo']} (使用原文)")
+
         translated.append(translated_repo)
         time.sleep(1)
 
@@ -264,11 +362,11 @@ def build_markdown_report(
     date_str: str,
 ) -> str:
     """构建 Markdown 格式的日报"""
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     lines = [
         f"# AI 日报 - {date_str}",
         "",
-        f"> 自动生成于 {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC",
+        f"> 自动生成于 {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC | "
+        f" Powered by GitHub Actions + GitHub Models",
         "",
         "---",
         "",
@@ -276,21 +374,28 @@ def build_markdown_report(
 
     # Hacker News 板块
     if hn_items:
-        lines.append("## Hacker News AI 热帖")
+        lines.append("## 🔥 Hacker News AI 热帖精选")
         lines.append("")
         for item in hn_items:
             cn_title = item.get("cn_title", item["title"])
-            cn_summary = item.get("cn_summary", "")
-            cn_highlight = item.get("cn_highlight", "")
             lines.append(f"### {cn_title}")
-            if cn_summary:
-                lines.append(f"> {cn_summary}")
-            if cn_highlight:
-                lines.append(f"- **重点**: {cn_highlight}")
-            lines.append(f"- **得分**: {item['score']} | [原文链接]({item['url']})")
+            cn_abstract = item.get("cn_abstract", "")
+            if cn_abstract:
+                lines.append(f"> {cn_abstract}")
+            highlights = item.get("cn_highlights", [])
+            if highlights:
+                lines.append("**核心看点：**")
+                for h in highlights:
+                    if h:
+                        lines.append(f"- {h}")
+            cn_why = item.get("cn_why_care", "")
+            if cn_why:
+                lines.append(f"**为什么值得关注：** {cn_why}")
+            lines.append(f"")
+            lines.append(f"- 🔗 [查看原文]({item['url']}) | 👍 得分: {item['score']}")
             lines.append("")
     else:
-        lines.append("## Hacker News AI 热帖")
+        lines.append("## 🔥 Hacker News AI 热帖精选")
         lines.append("")
         lines.append("_今日暂无高分 AI 相关帖子_")
         lines.append("")
@@ -300,35 +405,34 @@ def build_markdown_report(
 
     # arXiv 论文板块
     if arxiv_papers:
-        lines.append("## arXiv AI 论文精选")
+        lines.append("## 📄 arXiv AI 论文精选")
         lines.append("")
         for paper in arxiv_papers:
             cn_title = paper.get("cn_title", paper["title"])
-            cn_abstract = paper.get("cn_abstract", "")
-            cn_highlights = paper.get("cn_highlights", "")
-            cn_why = paper.get("cn_why_care", "")
-            authors = ", ".join(paper.get("authors", [])[:3])
             lines.append(f"### {cn_title}")
-            lines.append(f"**作者**: {authors}")
+            authors = ", ".join(paper.get("authors", [])[:4])
+            lines.append(f"**作者：** {authors}")
+            lines.append(f"**发布日期：** {paper.get('published', 'N/A')}")
             lines.append("")
+            cn_abstract = paper.get("cn_abstract", "")
             if cn_abstract:
                 lines.append(cn_abstract)
                 lines.append("")
-            if cn_highlights:
-                for h in cn_highlights.split("\n"):
-                    h = h.strip()
-                    if h.startswith("- "):
-                        h = h[2:]
+            highlights = paper.get("cn_highlights", [])
+            if highlights:
+                lines.append("**核心贡献：**")
+                for h in highlights:
                     if h:
                         lines.append(f"- {h}")
                 lines.append("")
+            cn_why = paper.get("cn_why_care", "")
             if cn_why:
-                lines.append(f"**值得关注**: {cn_why}")
+                lines.append(f"**为什么值得关注：** {cn_why}")
                 lines.append("")
-            lines.append(f"[论文链接]({paper['abs_url']}) | [PDF]({paper['pdf_url']})")
+            lines.append(f"- 📄 [论文链接]({paper['abs_url']}) | 📥 [PDF]({paper['pdf_url']})")
             lines.append("")
     else:
-        lines.append("## arXiv AI 论文精选")
+        lines.append("## 📄 arXiv AI 论文精选")
         lines.append("")
         lines.append("_今日暂无新论文_")
         lines.append("")
@@ -338,19 +442,21 @@ def build_markdown_report(
 
     # GitHub Release 板块
     if releases:
-        lines.append("## GitHub 项目 Release 动态")
+        lines.append("## 🚀 GitHub 项目 Release 动态")
         lines.append("")
         for rel in releases:
-            cn_summary = rel.get("cn_summary", rel["body"][:200])
-            lines.append(f"### {rel['repo']} - {rel['tag_name']}")
-            if rel.get("name"):
-                lines.append(f"**Release 名称**: {rel['name']}")
-            if cn_summary:
-                lines.append(f"> {cn_summary}")
-            lines.append(f"- [查看详情]({rel['html_url']})")
+            cn_title = rel.get("cn_title", f"{rel['repo']} - {rel['tag_name']}")
+            lines.append(f"### {cn_title}")
+            cn_abstract = rel.get("cn_abstract", "")
+            if cn_abstract:
+                lines.append(f"> {cn_abstract}")
+            cn_why = rel.get("cn_why_care", "")
+            if cn_why:
+                lines.append(f"**为什么值得关注：** {cn_why}")
+            lines.append(f"- 🔗 [查看 Release]({rel['html_url']})")
             lines.append("")
     else:
-        lines.append("## GitHub 项目 Release 动态")
+        lines.append("## 🚀 GitHub 项目 Release 动态")
         lines.append("")
         lines.append("_今日暂无新 Release_")
         lines.append("")
@@ -360,21 +466,23 @@ def build_markdown_report(
 
     # GitHub Trending 板块
     if trending:
-        lines.append("## GitHub AI 热门仓库 TOP5")
+        lines.append("## ⭐ GitHub AI 热门仓库 TOP5")
         lines.append("")
         for i, repo in enumerate(trending, 1):
-            cn_desc = repo.get("cn_description", repo["description"])
-            cn_why = repo.get("cn_why_care", "")
             lines.append(f"### {i}. {repo['repo']}")
-            lines.append(f"- **今日新增**: ⭐ {repo['stars_today']} | 总计: {repo['total_stars']} | 语言: {repo['language']}")
+            lines.append(
+                f"- **今日新增：** ⭐ {repo['stars_today']} | **总计：** {repo['total_stars']} | **语言：** {repo['language']}"
+            )
+            cn_desc = repo.get("cn_description", repo["description"])
             if cn_desc:
-                lines.append(f"- **描述**: {cn_desc}")
+                lines.append(f"- **项目介绍：** {cn_desc}")
+            cn_why = repo.get("cn_why_care", "")
             if cn_why:
-                lines.append(f"- **值得关注**: {cn_why}")
-            lines.append(f"- [查看仓库]({repo['url']})")
+                lines.append(f"- **为什么值得关注：** {cn_why}")
+            lines.append(f"- 🔗 [查看仓库]({repo['url']})")
             lines.append("")
     else:
-        lines.append("## GitHub AI 热门仓库 TOP5")
+        lines.append("## ⭐ GitHub AI 热门仓库 TOP5")
         lines.append("")
         lines.append("_今日暂无数据_")
         lines.append("")
@@ -397,6 +505,7 @@ def build_json_report(
     return {
         "date": date_str,
         "generated_at": datetime.now(timezone.utc).isoformat(),
+        "model": DEFAULT_MODEL,
         "hackernews": hn_items,
         "arxiv": arxiv_papers,
         "github_releases": releases,
@@ -407,6 +516,7 @@ def build_json_report(
 def main():
     print("=" * 60)
     print(f"AI Daily Curator - {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC")
+    print(f"模型: {DEFAULT_MODEL}")
     print("=" * 60)
 
     token = get_github_token()
@@ -420,7 +530,7 @@ def main():
     trending = fetch_trending()
 
     # Step 2: AI 翻译
-    print("\n🤖 Step 2: GitHub Models 中文处理...")
+    print(f"\n🤖 Step 2: GitHub Models 中文处理 (model={DEFAULT_MODEL})...")
     hn_items = translate_hn_items(hn_items, token)
     arxiv_papers = translate_arxiv_papers(arxiv_papers, token)
     releases = translate_releases(releases, token)
@@ -452,9 +562,11 @@ def main():
     print(f"  ✅ latest.md 已更新")
 
     # 统计
+    hn_ok = sum(1 for x in hn_items if x.get("cn_title") and x["cn_title"] != x.get("title"))
+    arxiv_ok = sum(1 for x in arxiv_papers if x.get("cn_title") and x["cn_title"] != x.get("title"))
     print(f"\n📊 日报统计:")
-    print(f"  - Hacker News: {len(hn_items)} 条")
-    print(f"  - arXiv 论文: {len(arxiv_papers)} 篇")
+    print(f"  - Hacker News: {len(hn_items)} 条 (翻译成功 {hn_ok})")
+    print(f"  - arXiv 论文: {len(arxiv_papers)} 篇 (翻译成功 {arxiv_ok})")
     print(f"  - GitHub Release: {len(releases)} 个")
     print(f"  - GitHub Trending: {len(trending)} 个")
     print("\n✨ 日报生成完成！")
