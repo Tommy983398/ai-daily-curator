@@ -1,0 +1,327 @@
+{
+  "date": "2026-05-04",
+  "generated_at": "2026-05-04T02:06:21.125375+00:00",
+  "model": "deepseek/deepseek-v3-0324",
+  "hackernews": [
+    {
+      "title": "VS Code inserting 'Co-Authored-by Copilot' into commits regardless of usage",
+      "url": "https://github.com/microsoft/vscode/pull/310226",
+      "score": 1462,
+      "hn_id": 47989883,
+      "time": 1777751846,
+      "time_str": "2026-05-02 19:57 UTC",
+      "source": "hackernews"
+    },
+    {
+      "title": "Kimi K2.6 just beat Claude, GPT-5.5, and Gemini in a coding challenge",
+      "url": "https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/",
+      "score": 352,
+      "hn_id": 47993235,
+      "time": 1777781128,
+      "time_str": "2026-05-03 04:05 UTC",
+      "source": "hackernews"
+    },
+    {
+      "title": "OpenAI's o1 correctly diagnosed 67% of ER patients vs. 50-55% by triage doctors",
+      "url": "https://www.theguardian.com/technology/2026/apr/30/ai-outperforms-doctors-in-harvard-trial-of-emergency-triage-diagnoses",
+      "score": 279,
+      "hn_id": 47991981,
+      "time": 1777768250,
+      "time_str": "2026-05-03 00:30 UTC",
+      "source": "hackernews"
+    },
+    {
+      "title": "Specsmaxxing – On overcoming AI psychosis, and why I write specs in YAML",
+      "url": "https://acai.sh/blog/specsmaxxing",
+      "score": 260,
+      "hn_id": 47994012,
+      "time": 1777790018,
+      "time_str": "2026-05-03 06:33 UTC",
+      "source": "hackernews"
+    },
+    {
+      "title": "For thirty years I programmed with Phish on, every day",
+      "url": "https://christophermeiklejohn.com/ai/personal/phish/flow/agents/2026/05/03/rift.html",
+      "score": 207,
+      "hn_id": 47998225,
+      "time": 1777823759,
+      "time_str": "2026-05-03 15:55 UTC",
+      "source": "hackernews"
+    },
+    {
+      "title": "The agent harness belongs outside the sandbox",
+      "url": "https://www.mendral.com/blog/agent-harness-belongs-outside-sandbox",
+      "score": 165,
+      "hn_id": 47990675,
+      "time": 1777756887,
+      "time_str": "2026-05-02 21:21 UTC",
+      "source": "hackernews"
+    },
+    {
+      "title": "DeepClaude – Claude Code agent loop with DeepSeek V4 Pro, 17x cheaper",
+      "url": "https://github.com/aattaran/deepclaude",
+      "score": 162,
+      "hn_id": 48002136,
+      "time": 1777846400,
+      "time_str": "2026-05-03 22:13 UTC",
+      "source": "hackernews"
+    },
+    {
+      "title": "Agentic Coding Is a Trap",
+      "url": "https://larsfaye.com/articles/agentic-coding-is-a-trap",
+      "score": 149,
+      "hn_id": 48002442,
+      "time": 1777848727,
+      "time_str": "2026-05-03 22:52 UTC",
+      "source": "hackernews"
+    }
+  ],
+  "arxiv": [
+    {
+      "title": "Jailbreaking Vision-Language Models Through the Visual Modality",
+      "authors": [
+        "Aharon Azulay",
+        "Jan Dubiński",
+        "Zhuoyun Li",
+        "Atharv Mittal",
+        "Yossi Gandelsman"
+      ],
+      "abstract": "The visual modality of vision-language models (VLMs) is an underexplored attack surface for bypassing safety alignment. We introduce four jailbreak attacks exploiting the vision component: (1) encoding harmful instructions as visual symbol sequences with a decoding legend, (2) replacing harmful objects with benign substitutes (e.g., bomb -> banana) then prompting for harmful actions using the substitute term, (3) replacing harmful text in images (e.g., on book covers) with benign words while visual context preserves the original meaning, and (4) visual analogy puzzles whose solution requires inferring a prohibited concept. Evaluating across six frontier VLMs, our visual attacks bypass safety alignment and expose a cross-modality alignment gap: text-based safety training does not automatica",
+      "arxiv_id": "2605.00583v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.00583v1",
+      "abs_url": "https://arxiv.org/abs/2605.00583v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-05-01",
+      "source": "arxiv"
+    },
+    {
+      "title": "Persistent Visual Memory: Sustaining Perception for Deep Generation in LVLMs",
+      "authors": [
+        "Siyuan Huang",
+        "Xiaoye Qu",
+        "Yafu Li",
+        "Tong Zhu",
+        "Zefeng He"
+      ],
+      "abstract": "While autoregressive Large Vision-Language Models (LVLMs) demonstrate remarkable proficiency in multimodal tasks, they face a \"Visual Signal Dilution\" phenomenon, where the accumulation of textual history expands the attention partition function, causing visual attention to decay inversely with generated sequence length. To counteract this, we propose Persistent Visual Memory (PVM), a lightweight learnable module designed to ensure sustained, on-demand visual perception. Integrated as a parallel branch alongside the Feed-Forward Network (FFN) in LVLMs, PVM establishes a distance-agnostic retrieval pathway that directly provides visual embeddings for precise visual perception, thereby structurally mitigating the signal suppression inherent to deep generation. Extensive experiments on Qwen3-",
+      "arxiv_id": "2605.00814v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.00814v1",
+      "abs_url": "https://arxiv.org/abs/2605.00814v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-05-01",
+      "source": "arxiv"
+    },
+    {
+      "title": "InpaintSLat: Inpainting Structured 3D Latents via Initial Noise Optimization",
+      "authors": [
+        "Jaeyoung Chung",
+        "Suyoung Lee",
+        "Kyoung Mu Lee"
+      ],
+      "abstract": "We present a training-free approach for controllable 3D inpainting based on initial noise optimization. In the structured 3D latent diffusion framework, we observe that the underlying geometric structure is established during the early stages of the diffusion process and exhibits high sensitivity to the initial noise. Such characteristics compromise stability in tasks like inpainting and editing, where the model must ensure strict alignment with the existing context while synthesizing a new structure. In this paper, we introduce a strategy to optimize the initial noise within the structured 3D latent diffusion framework, ensuring high-fidelity 3D inpainting. Specifically, we update the initial noise by leveraging a backpropagation approximation grounded in the rectified flow model, with th",
+      "arxiv_id": "2605.00664v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.00664v1",
+      "abs_url": "https://arxiv.org/abs/2605.00664v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-05-01",
+      "source": "arxiv"
+    },
+    {
+      "title": "Learn where to Click from Yourself: On-Policy Self-Distillation for GUI Grounding",
+      "authors": [
+        "Yan Zhang",
+        "Daiqing Wu",
+        "Huawen Shen",
+        "Yu Zhou",
+        "Can Ma"
+      ],
+      "abstract": "Graphical User Interface (GUI) grounding maps natural language instructions to the visual coordinates of target elements and serves as a core capability for autonomous GUI agents. Recent reinforcement learning methods (e.g., GRPO) have achieved strong performance, but they rely on expensive multiple rollouts and suffer from sparse signals on hard samples. These limitations make on-policy self-distillation (OPSD), which provides dense token-level supervision from a single rollout, a promising alternative. However, its applicability to GUI grounding remains unexplored. In this paper, we present GUI-SD, the first OPSD framework tailored for GUI grounding. First, it constructs a visually enriched privileged context for the teacher using a target bounding box and a Gaussian soft mask, providing",
+      "arxiv_id": "2605.00642v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.00642v1",
+      "abs_url": "https://arxiv.org/abs/2605.00642v1",
+      "categories": [
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-05-01",
+      "source": "arxiv"
+    },
+    {
+      "title": "BlenderRAG: High-Fidelity 3D Object Generation via Retrieval-Augmented Code Synthesis",
+      "authors": [
+        "Massimo Rondelli",
+        "Francesco Pivi",
+        "Maurizio Gabbrielli"
+      ],
+      "abstract": "Automatic generation of executable Blender code from natural language remains challenging, with state-of-the-art LLMs producing frequent syntactic errors and geometrically inconsistent objects. We present BlenderRAG, a retrieval-augmented generation system that operates on a curated multimodal dataset of 500 expert-validated examples (text, code, image) across 50 object categories. By retrieving semantically similar examples during generation, BlenderRAG improves compilation success rates from 40.8% to 70.0% and semantic normalized alignment from 0.41 to 0.77 (CLIP similarity) across four state-of-the-art LLMs, without requiring fine-tuning or specialized hardware, making it immediately accessible for deployment. The dataset and code will be available at https://github.com/MaxRondelli/Blen",
+      "arxiv_id": "2605.00632v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.00632v1",
+      "abs_url": "https://arxiv.org/abs/2605.00632v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.GR",
+        "cs.HC",
+        "cs.LG"
+      ],
+      "published": "2026-05-01",
+      "source": "arxiv"
+    },
+    {
+      "title": "Structure Liberates: How Constrained Sensemaking Produces More Novel Research Output",
+      "authors": [
+        "James Mooney",
+        "Zae Myung Kim",
+        "Young-Jun Lee",
+        "Dongyeop Kang"
+      ],
+      "abstract": "Scientific discovery is an extended process of ideation--surveying prior work, forming hypotheses, and refining reasoning--yet existing approaches treat this phase as a brief preamble despite its central role in research. We introduce SCISENSE, a sensemaking-grounded framework that operationalizes ideation as a structured sequence of eight cognitive stages (Pirolli \\& Card, 2005). We construct SCISENSE-Traj, a 100K-scale dataset of citation-conditioned research trajectories in two modes: Target, where an LLM reconstructs the ideation path leading to a known paper from its cited works, and Infer, where the LLM proposes novel directions from the same citations. We distill these into SCISENSE-LM, a family of sensemaking LLMs spanning 3B to 70B parameters. Contrary to the assumption that loose",
+      "arxiv_id": "2605.00557v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.00557v1",
+      "abs_url": "https://arxiv.org/abs/2605.00557v1",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-05-01",
+      "source": "arxiv"
+    },
+    {
+      "title": "Towards Improving Speaker Distance Estimation through Generative Impulse Response Augmentation",
+      "authors": [
+        "Anton Ratnarajah",
+        "Mehmet Ergezer",
+        "Arun Nair",
+        "Mrudula Athi"
+      ],
+      "abstract": "The Room Acoustics and Speaker Distance Estimation (SDE) Challenge at ICASSP 2025 explores the effectiveness of augmented room impulse response (RIR) data for improving SDE model performance. This challenge at GenDARA involves generating RIRs to supplement sparse datasets and fine-tuning SDE models with the augmented data. We employ the open-source fast diffuse room impulse response generator (FastRIR) conditioned only on speaker and listener locations. We design a quality filter to ensure generated RIR alignment with challenge RIRs, and hyperparameter optimization is employed for model fine-tuning. Our approach reduces the mean absolute error (MAE) of the five positions from 1.66m to 0.6m for GWA rooms and from 2.18m to 0.69m for Treble rooms, with results demonstrating that the augmentat",
+      "arxiv_id": "2605.00721v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.00721v1",
+      "abs_url": "https://arxiv.org/abs/2605.00721v1",
+      "categories": [
+        "cs.SD",
+        "cs.AI",
+        "eess.AS",
+        "eess.SP"
+      ],
+      "published": "2026-05-01",
+      "source": "arxiv"
+    },
+    {
+      "title": "Can Coding Agents Reproduce Findings in Computational Materials Science?",
+      "authors": [
+        "Ziyang Huang",
+        "Yi Cao",
+        "Ali K. Shargh",
+        "Jing Luo",
+        "Ruidong Mei"
+      ],
+      "abstract": "Large language models are increasingly deployed as autonomous coding agents and have achieved remarkably strong performance on software engineering benchmarks. However, it is unclear whether such success transfers to computational scientific workflows, where tasks require not only strong coding ability, but also the ability to navigate complex, domain-specific procedures and to interpret results in the context of scientific claims. To address this question, we present AutoMat, a benchmark for evaluating LLM-based agents' ability to reproduce claims from computational materials science. AutoMat poses three interrelated challenges: recovering underspecified computational procedures, navigating specialized toolchains, and determining whether the resulting evidence supports a claim. By working",
+      "arxiv_id": "2605.00803v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.00803v1",
+      "abs_url": "https://arxiv.org/abs/2605.00803v1",
+      "categories": [
+        "cs.SE",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-05-01",
+      "source": "arxiv"
+    }
+  ],
+  "github_releases": [
+    {
+      "repo": "langchain-ai/langchain",
+      "tag_name": "langchain-anthropic==1.4.3",
+      "name": "langchain-anthropic==1.4.3",
+      "published_at": "2026-05-03T17:33:44Z",
+      "body": "Changes since langchain-anthropic==1.4.2\n\nrelease(anthropic): 1.4.3 (#37166)\nrefactor(langchain-classic): retarget deprecations to `create_agent`, other chores (#37164)\nchore(docs): update x handle references (#37081)\nfix(anthropic): guard httpx finalizers (#37064)",
+      "html_url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.4.3",
+      "source": "github_release"
+    },
+    {
+      "repo": "langchain-ai/langchain",
+      "tag_name": "langchain-classic==1.0.5",
+      "name": "langchain-classic==1.0.5",
+      "published_at": "2026-05-03T17:32:23Z",
+      "body": "Changes since langchain-classic==1.0.4\n\nrelease(langchain-classic): 1.0.5 (#37165)\nrefactor(langchain-classic): retarget deprecations to `create_agent`, other chores (#37164)\nchore(langchain,langchain-classic): uncomment optional deps (#37163)\nchore: bump types-pyyaml from 6.0.12.20250915 to 6.0.12.20260408 in /libs/langchain (#37130)\nchore: bump types-pytz from 2026.1.1.20260304 to 2026.1.1.20260408 in /libs/langchain (#37131)\nchore: bump notebook from 7.4.5 to 7.5.6 in /libs/langchain (#37104)",
+      "html_url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-classic%3D%3D1.0.5",
+      "source": "github_release"
+    },
+    {
+      "repo": "vllm-project/vllm",
+      "tag_name": "v0.20.1",
+      "name": "v0.20.1",
+      "published_at": "2026-05-03T08:24:10Z",
+      "body": "# vLLM v0.20.1\r\n\r\nThis is a patch release on top of `v0.20.0` primarily focused on **DeepSeek V4 stabilization and performance improvements**, along with several important bug fixes.\r\n\r\n### DeepSeek V4\r\n* Base model support (#41006).\r\n* Multi-stream pre-attention GEMM (#41061), configurable pre-attn GEMM knob (#41443), and tuned default `VLLM_MULTI_STREAM_GEMM_TOKEN_THRESHOLD` (#41526).\r\n* BF16 and MXFP8 all-to-all support for FlashInfer one-sided communication (#40960).\r\n* PTX `cvt` instruction",
+      "html_url": "https://github.com/vllm-project/vllm/releases/tag/v0.20.1",
+      "source": "github_release"
+    },
+    {
+      "repo": "ollama/ollama",
+      "tag_name": "v0.23.0",
+      "name": "v0.23.0",
+      "published_at": "2026-05-03T03:34:11Z",
+      "body": "## Claude Desktop\r\nClaude Desktop is now supported with Ollama Launch. \r\n\r\nClaude Cowork and Claude Code are supported within the Claude Desktop App.\r\n\r\n```\r\nollama launch claude-desktop\r\n```\r\n\r\n### Claude Cowork\r\n<img width=\"1272\" height=\"872\" alt=\"ca1\" src=\"https://github.com/user-attachments/assets/1d550e3f-0272-4429-8cb2-06d32344cb77\" />\r\n\r\n\r\n### Claude Code\r\n<img width=\"1272\" height=\"872\" alt=\"ca2\" src=\"https://github.com/user-attachments/assets/f2a5ed5f-3069-4975-bb22-ada82914a01c\" />\r\n\r\n\r",
+      "html_url": "https://github.com/ollama/ollama/releases/tag/v0.23.0",
+      "source": "github_release"
+    }
+  ],
+  "github_trending": [
+    {
+      "repo": "LearningCircuit/local-deep-research",
+      "description": "Local Deep Research achieves ~95% on SimpleQA benchmark (tested with Qwen 3.6). Supports local and cloud LLMs (Ollama, Google, Anthropic, ...). Searches 10+ sources - arXiv, PubMed, web, and your private documents. Everything Local & Encrypted.",
+      "total_stars": 4667,
+      "stars_today": 143,
+      "language": "Python",
+      "url": "https://github.com/LearningCircuit/local-deep-research",
+      "source": "github_trending"
+    },
+    {
+      "repo": "ruvnet/ruflo",
+      "description": "🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration",
+      "total_stars": 39098,
+      "stars_today": 1840,
+      "language": "TypeScript",
+      "url": "https://github.com/ruvnet/ruflo",
+      "source": "github_trending"
+    },
+    {
+      "repo": "iOfficeAI/AionUi",
+      "description": "Free, local, open-source 24/7 Cowork app and OpenClaw for Gemini CLI, Claude Code, Codex, OpenCode, Qwen Code, Goose CLI, Auggie, and more | 🌟 Star if you like it!",
+      "total_stars": 23592,
+      "stars_today": 141,
+      "language": "TypeScript",
+      "url": "https://github.com/iOfficeAI/AionUi",
+      "source": "github_trending"
+    },
+    {
+      "repo": "TauricResearch/TradingAgents",
+      "description": "TradingAgents: Multi-Agents LLM Financial Trading Framework",
+      "total_stars": 65387,
+      "stars_today": 3313,
+      "language": "Python",
+      "url": "https://github.com/TauricResearch/TradingAgents",
+      "source": "github_trending"
+    },
+    {
+      "repo": "vas3k/TaxHacker",
+      "description": "Self-hosted AI accounting app. LLM analyzer for receipts, invoices, transactions with custom prompts and categories",
+      "total_stars": 5505,
+      "stars_today": 83,
+      "language": "TypeScript",
+      "url": "https://github.com/vas3k/TaxHacker",
+      "source": "github_trending"
+    }
+  ]
+}
