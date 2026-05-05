@@ -1,0 +1,192 @@
+{
+  "date": "2026-05-05",
+  "generated_at": "2026-05-05T02:05:14.189980+00:00",
+  "model": "deepseek/deepseek-v3-0324",
+  "hackernews": [
+    {
+      "title": "DeepClaude – Claude Code agent loop with DeepSeek V4 Pro",
+      "url": "https://github.com/aattaran/deepclaude",
+      "score": 651,
+      "hn_id": 48002136,
+      "time": 1777846400,
+      "time_str": "2026-05-03 22:13 UTC",
+      "source": "hackernews"
+    },
+    {
+      "title": "Let's Buy Spirit Air",
+      "url": "https://letsbuyspiritair.com/",
+      "score": 573,
+      "hn_id": 48002777,
+      "time": 1777851371,
+      "time_str": "2026-05-03 23:36 UTC",
+      "source": "hackernews"
+    },
+    {
+      "title": "Agentic Coding Is a Trap",
+      "url": "https://larsfaye.com/articles/agentic-coding-is-a-trap",
+      "score": 424,
+      "hn_id": 48002442,
+      "time": 1777848727,
+      "time_str": "2026-05-03 22:52 UTC",
+      "source": "hackernews"
+    },
+    {
+      "title": "How OpenAI delivers low-latency voice AI at scale",
+      "url": "https://openai.com/index/delivering-low-latency-voice-ai-at-scale/",
+      "score": 285,
+      "hn_id": 48013919,
+      "time": 1777923767,
+      "time_str": "2026-05-04 19:42 UTC",
+      "source": "hackernews"
+    },
+    {
+      "title": "LLMs Are Not a Higher Level of Abstraction",
+      "url": "https://www.lelanthran.com/chap15/content.html",
+      "score": 159,
+      "hn_id": 47999520,
+      "time": 1777830718,
+      "time_str": "2026-05-03 17:51 UTC",
+      "source": "hackernews"
+    },
+    {
+      "title": "Let's talk about LLMs",
+      "url": "https://www.b-list.org/weblog/2026/apr/09/llms/",
+      "score": 141,
+      "hn_id": 48011904,
+      "time": 1777915779,
+      "time_str": "2026-05-04 17:29 UTC",
+      "source": "hackernews"
+    },
+    {
+      "title": "Agent Skills",
+      "url": "https://addyosmani.com/blog/agent-skills/",
+      "score": 112,
+      "hn_id": 48015397,
+      "time": 1777930842,
+      "time_str": "2026-05-04 21:40 UTC",
+      "source": "hackernews"
+    },
+    {
+      "title": "Alberta voter list leak is a potential public safety disaster",
+      "url": "https://globalnews.ca/news/11828244/alberta-voter-list-leak-public-safety-disaster/",
+      "score": 112,
+      "hn_id": 48010208,
+      "time": 1777909647,
+      "time_str": "2026-05-04 15:47 UTC",
+      "source": "hackernews"
+    }
+  ],
+  "arxiv": [],
+  "github_releases": [
+    {
+      "repo": "anthropics/anthropic-sdk-python",
+      "tag_name": "v0.98.1",
+      "name": "v0.98.1",
+      "published_at": "2026-05-04T21:40:29Z",
+      "body": "## 0.98.1 (2026-05-04)\n\nFull Changelog: [v0.98.0...v0.98.1](https://github.com/anthropics/anthropic-sdk-python/compare/v0.98.0...v0.98.1)\n\n### Chores\n\n* fix typo in example ([#1754](https://github.com/anthropics/anthropic-sdk-python/issues/1754)) ([de8ba13](https://github.com/anthropics/anthropic-sdk-python/commit/de8ba13769837f92ff00be8a1b1e9ad0749eae2f))",
+      "html_url": "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.98.1",
+      "source": "github_release"
+    },
+    {
+      "repo": "langchain-ai/langgraph",
+      "tag_name": "checkpointpostgres==3.1.0a4",
+      "name": "langgraph-checkpoint-postgres==3.1.0a4",
+      "published_at": "2026-05-04T19:35:49Z",
+      "body": "Changes since checkpointpostgres==3.1.0a3\n\n* release: alpha bump (a4) for langgraph, checkpoint, checkpoint-postgres (#7701)\n* feat: public get_writes_history saver API + delta cadence rework (#7699)\n* chore(deps): bump the minor-and-patch group in /libs/checkpoint-postgres with 2 updates (#7665)",
+      "html_url": "https://github.com/langchain-ai/langgraph/releases/tag/checkpointpostgres%3D%3D3.1.0a4",
+      "source": "github_release"
+    },
+    {
+      "repo": "langchain-ai/langgraph",
+      "tag_name": "1.2.0a7",
+      "name": "langgraph==1.2.0a7",
+      "published_at": "2026-05-04T19:35:44Z",
+      "body": "Changes since 1.2.0a6\n\n* release: alpha bump (a4) for langgraph, checkpoint, checkpoint-postgres (#7701)\n* feat: public get_writes_history saver API + delta cadence rework (#7699)",
+      "html_url": "https://github.com/langchain-ai/langgraph/releases/tag/1.2.0a7",
+      "source": "github_release"
+    },
+    {
+      "repo": "openai/openai-python",
+      "tag_name": "v2.34.0",
+      "name": "v2.34.0",
+      "published_at": "2026-05-04T17:33:53Z",
+      "body": "## 2.34.0 (2026-05-04)\n\nFull Changelog: [v2.33.0...v2.34.0](https://github.com/openai/openai-python/compare/v2.33.0...v2.34.0)\n\n### Features\n\n* **api:** add external_key_id to projects, email/metadata params to users, update types ([2d232ee](https://github.com/openai/openai-python/commit/2d232eebb2fe021bb21f2576b17d1d588f81a608))\n* **api:** add support for Admin API Keys per endpoint ([b8b176a](https://github.com/openai/openai-python/commit/b8b176af84172f27d2fde8dca062ca4c41f94bf7))\n* **api:** a",
+      "html_url": "https://github.com/openai/openai-python/releases/tag/v2.34.0",
+      "source": "github_release"
+    },
+    {
+      "repo": "anthropics/anthropic-sdk-python",
+      "tag_name": "v0.98.0",
+      "name": "v0.98.0",
+      "published_at": "2026-05-04T17:13:38Z",
+      "body": "## 0.98.0 (2026-05-04)\n\nFull Changelog: [v0.97.0...v0.98.0](https://github.com/anthropics/anthropic-sdk-python/compare/v0.97.0...v0.98.0)\n\n### Features\n\n* **api:** improve Managed Agents APIs ([7faf393](https://github.com/anthropics/anthropic-sdk-python/commit/7faf3939a803420e7efd85cc18b67b97b429c172))\n* **client:** add Workload Identity Federation, interactive OAuth, and auth profiles ([6458bcc](https://github.com/anthropics/anthropic-sdk-python/commit/6458bcc28e83adcd96cd084ed19ec113d5462c80))",
+      "html_url": "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.98.0",
+      "source": "github_release"
+    },
+    {
+      "repo": "langchain-ai/langgraph",
+      "tag_name": "1.2.0a6",
+      "name": "langgraph==1.2.0a6",
+      "published_at": "2026-05-04T13:04:06Z",
+      "body": "# `langgraph` v1.2 (alpha)\r\n\r\nThis release adds finer-grained control over node execution — timeouts, error recovery, and graceful shutdown — a new channel type that cuts checkpoint overhead for long-running threads, and a new content-block-centric streaming API (v3) with typed, per-channel projections.\r\n\r\n---\r\n\r\n## `DeltaChannel` (beta)\r\n\r\nA new channel type that stores only the incremental delta at each step rather than re-serializing the full accumulated value. Most useful for channels that g",
+      "html_url": "https://github.com/langchain-ai/langgraph/releases/tag/1.2.0a6",
+      "source": "github_release"
+    },
+    {
+      "repo": "vllm-project/vllm",
+      "tag_name": "v0.20.1",
+      "name": "v0.20.1",
+      "published_at": "2026-05-04T10:36:26Z",
+      "body": "# vLLM v0.20.1\r\n\r\nThis is a patch release on top of `v0.20.0` primarily focused on **DeepSeek V4 stabilization and performance improvements**, along with several important bug fixes.\r\n\r\n### DeepSeek V4\r\n* Base model support (#41006).\r\n* Multi-stream pre-attention GEMM (#41061), configurable pre-attn GEMM knob (#41443), and tuned default `VLLM_MULTI_STREAM_GEMM_TOKEN_THRESHOLD` (#41526).\r\n* BF16 and MXFP8 all-to-all support for FlashInfer one-sided communication (#40960).\r\n* PTX `cvt` instruction",
+      "html_url": "https://github.com/vllm-project/vllm/releases/tag/v0.20.1",
+      "source": "github_release"
+    }
+  ],
+  "github_trending": [
+    {
+      "repo": "raullenchai/Rapid-MLX",
+      "description": "The fastest local AI engine for Apple Silicon. 4.2x faster than Ollama, 0.08s cached TTFT, 100% tool calling. 17 tool parsers, prompt cache, reasoning separation, cloud routing. Drop-in OpenAI replacement. Works with Claude Code, Cursor, Aider.",
+      "total_stars": 1152,
+      "stars_today": 200,
+      "language": "Python",
+      "url": "https://github.com/raullenchai/Rapid-MLX",
+      "source": "github_trending"
+    },
+    {
+      "repo": "ruvnet/ruflo",
+      "description": "🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration",
+      "total_stars": 41516,
+      "stars_today": 2598,
+      "language": "TypeScript",
+      "url": "https://github.com/ruvnet/ruflo",
+      "source": "github_trending"
+    },
+    {
+      "repo": "LearningCircuit/local-deep-research",
+      "description": "~95% on SimpleQA (e.g. Qwen3.6-27B on a 3090). Supports all local and cloud LLMs (llama.cpp, Ollama, Google, ...). 10+ search engines - arXiv, PubMed, your private documents. Everything Local & Encrypted.",
+      "total_stars": 4833,
+      "stars_today": 171,
+      "language": "Python",
+      "url": "https://github.com/LearningCircuit/local-deep-research",
+      "source": "github_trending"
+    },
+    {
+      "repo": "MervinPraison/PraisonAI",
+      "description": "PraisonAI 🦞 — Hire a 24/7 AI Workforce. Stop writing boilerplate and start shipping autonomous self-improving agents that research, plan, code, and execute tasks. Deployed in 5 lines of code with built-in memory, RAG, and support for 100+ LLMs.",
+      "total_stars": 7046,
+      "stars_today": 17,
+      "language": "Python",
+      "url": "https://github.com/MervinPraison/PraisonAI",
+      "source": "github_trending"
+    },
+    {
+      "repo": "Vexa-ai/vexa",
+      "description": "Open-source meeting transcription API for Google Meet, Microsoft Teams & Zoom. Auto-join bots, real-time WebSocket transcripts, MCP server for AI agents. Self-host or use hosted SaaS.",
+      "total_stars": 1976,
+      "stars_today": 13,
+      "language": "TypeScript",
+      "url": "https://github.com/Vexa-ai/vexa",
+      "source": "github_trending"
+    }
+  ]
+}
